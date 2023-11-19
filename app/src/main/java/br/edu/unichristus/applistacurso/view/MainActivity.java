@@ -10,9 +10,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import br.edu.unichristus.applistacurso.R;
+import br.edu.unichristus.applistacurso.controller.AlunoController;
 import br.edu.unichristus.applistacurso.model.Aluno;
 
 public class MainActivity extends AppCompatActivity {
+
+    AlunoController controller;
 
     Aluno aluno;
 
@@ -31,6 +34,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        controller = new AlunoController();
+        controller.toString();
+
+        aluno = new Aluno();
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobrenome = findViewById(R.id.editSobrenome);
@@ -75,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 aluno.setTelefone(editTelefone.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo "+aluno.toString(), Toast.LENGTH_LONG).show();
+
+                controller.salvar(aluno);
             }
         });
 
