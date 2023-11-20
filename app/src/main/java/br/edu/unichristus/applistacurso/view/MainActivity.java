@@ -16,10 +16,6 @@ import br.edu.unichristus.applistacurso.model.Aluno;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences preferences;
-    SharedPreferences.Editor listaCurso;
-    public static final String NOME_PREFERENCES = "pref_lista_curso";
-
     AlunoController controller;
 
     Aluno aluno;
@@ -34,25 +30,17 @@ public class MainActivity extends AppCompatActivity {
     Button btnFinalizar;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        listaCurso = preferences.edit();
-
-        controller = new AlunoController();
+        controller = new AlunoController(MainActivity.this);
         controller.toString();
 
         aluno = new Aluno();
 
-        //Buscar dados no SharedPreferences no arquivo criado, no caso "preferences"
-        aluno.setPrimeiroNome(preferences.getString("primeiroNome", ""));
-        aluno.setSobrenome(preferences.getString("sobrenome", ""));
-        aluno.setCurso(preferences.getString("curso", ""));
-        aluno.setTelefone(preferences.getString("telefone", ""));
+        controller.buscar(aluno);
 
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobrenome = findViewById(R.id.editSobrenome);
@@ -74,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         editTelefone.setText(aluno.getTelefone());
 
 
-
         //Limpar dados
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,10 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 editCurso.setText("");
                 editTelefone.setText("");
 
-                //Limpar o SharedPreferences
-                listaCurso.clear();
-                listaCurso.apply();
-            }
+                controller.limpar();
+           }
         });
 
         //Fechar aplicativo
@@ -109,21 +94,11 @@ public class MainActivity extends AppCompatActivity {
                 aluno.setCurso(editCurso.getText().toString());
                 aluno.setTelefone(editTelefone.getText().toString());
 
-                Toast.makeText(MainActivity.this, "Salvo "+aluno.toString(), Toast.LENGTH_LONG).show();
-
-                //Salvar dados digitados no arquivo do SharedPreferences criado - preferences
-                listaCurso.putString("primeiroNome", aluno.getPrimeiroNome());
-                listaCurso.putString("sobrenome", aluno.getSobrenome());
-                listaCurso.putString("curso", aluno.getCurso());
-                listaCurso.putString("telefone", aluno.getTelefone());
-                listaCurso.apply();
-
+                Toast.makeText(MainActivity.this, "Salvo " + aluno.toString(), Toast.LENGTH_LONG).show();
 
                 controller.salvar(aluno);
             }
         });
-
-
 
 
     }
