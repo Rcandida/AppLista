@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import br.edu.unichristus.applistacurso.R;
+import br.edu.unichristus.applistacurso.database.ListaCursoDB;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -26,6 +27,8 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+
+                ListaCursoDB db = new ListaCursoDB(SplashActivity.this);
 
                 Intent telaPrincipal = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(telaPrincipal);
