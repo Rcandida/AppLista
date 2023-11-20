@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Agradecemos o preenchimento da pesquisa!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Agradecemos sua contribuição!", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
