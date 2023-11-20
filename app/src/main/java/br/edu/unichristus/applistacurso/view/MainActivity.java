@@ -2,6 +2,7 @@ package br.edu.unichristus.applistacurso.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,9 @@ import br.edu.unichristus.applistacurso.controller.AlunoController;
 import br.edu.unichristus.applistacurso.model.Aluno;
 
 public class MainActivity extends AppCompatActivity {
+
+    SharedPreferences preferences;
+    public static final String NOME_PREFERENCES = "pref_lista_curso";
 
     AlunoController controller;
 
@@ -34,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        preferences = getSharedPreferences(NOME_PREFERENCES, 0);
+        SharedPreferences.Editor listaCurso = preferences.edit();
 
         controller = new AlunoController();
         controller.toString();
@@ -83,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
                 aluno.setTelefone(editTelefone.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo "+aluno.toString(), Toast.LENGTH_LONG).show();
+
+                listaCurso.putString("primeiroNome", aluno.getPrimeiroNome());
+                listaCurso.putString("sobrenome", aluno.getSobrenome());
+                listaCurso.putString("curso", aluno.getCurso());
+                listaCurso.putString("telefone", aluno.getTelefone());
+                listaCurso.apply();
+
 
                 controller.salvar(aluno);
             }
