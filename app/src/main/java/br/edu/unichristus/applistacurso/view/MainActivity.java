@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
 import br.edu.unichristus.applistacurso.R;
 import br.edu.unichristus.applistacurso.controller.AlunoController;
 import br.edu.unichristus.applistacurso.model.Aluno;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     AlunoController controller;
 
     Aluno aluno;
+    List<Aluno> dados;
+
 
     EditText editPrimeiroNome;
     EditText editSobrenome;
@@ -36,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         controller = new AlunoController(MainActivity.this);
+        dados = controller.getListaDados();
+
         controller.toString();
 
         aluno = new Aluno();

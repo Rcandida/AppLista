@@ -1,6 +1,10 @@
 package br.edu.unichristus.applistacurso.model;
 
+import java.util.List;
+
 public class Aluno {
+
+    private int id;
 
     private String primeiroNome;
     private String sobrenome;
@@ -8,6 +12,14 @@ public class Aluno {
     private String telefone;
 
     public Aluno() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getPrimeiroNome() {

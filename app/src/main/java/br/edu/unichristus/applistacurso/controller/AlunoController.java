@@ -6,6 +6,8 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import java.util.List;
+
 import br.edu.unichristus.applistacurso.database.ListaCursoDB;
 import br.edu.unichristus.applistacurso.model.Aluno;
 import br.edu.unichristus.applistacurso.view.MainActivity;
@@ -48,6 +50,11 @@ public class AlunoController extends ListaCursoDB {
 
         salvarObjeto("Intencao", dados);
 
+    }
+
+    public List<Aluno> getListaDados(){
+
+        return listarDados();
     }
 
     public Aluno buscar(Aluno aluno) {

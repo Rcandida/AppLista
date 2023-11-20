@@ -6,6 +6,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.edu.unichristus.applistacurso.model.Aluno;
+
 public class ListaCursoDB extends SQLiteOpenHelper {
 
     private static final String DB_NAME = "listacurso.db";
@@ -43,6 +48,38 @@ public class ListaCursoDB extends SQLiteOpenHelper {
     public void salvarObjeto(String tabela, ContentValues dados){
 
         db.insert(tabela, null, dados);
+
+    }
+
+    public List<Aluno> listarDados(){
+
+        List<Aluno> lista = new ArrayList<>();
+
+        Aluno registro;
+        String querySQL = "SELECT * FROM Intencao";
+
+        cursor = db.rawQuery(querySQL, null);
+
+        if(cursor.moveToFirst()){
+
+            do{
+
+                registro = new Aluno();
+
+                registro.setId(cursor.getInt(0));
+                registro.setPrimeiroNome(cursor.getString(1));
+                registro.setSobrenome(cursor.getString(2));
+                registro.setCurso(cursor.getString(3));
+                registro.setTelefone(cursor.getString(4));
+
+                lista.add(registro);
+
+            }while(cursor.moveToNext());
+        }else{
+
+        }
+
+        return lista;
 
     }
 }
