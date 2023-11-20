@@ -17,6 +17,7 @@ import br.edu.unichristus.applistacurso.model.Aluno;
 public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
+    SharedPreferences.Editor listaCurso;
     public static final String NOME_PREFERENCES = "pref_lista_curso";
 
     AlunoController controller;
@@ -40,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         preferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        SharedPreferences.Editor listaCurso = preferences.edit();
+        listaCurso = preferences.edit();
 
         controller = new AlunoController();
         controller.toString();
@@ -82,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
                 editSobrenome.setText("");
                 editCurso.setText("");
                 editTelefone.setText("");
+
+                //Limpar o SharedPreferences
+                listaCurso.clear();
+                listaCurso.apply();
             }
         });
 
@@ -106,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, "Salvo "+aluno.toString(), Toast.LENGTH_LONG).show();
 
+                //Salvar dados digitados no arquivo do SharedPreferences criado - preferences
                 listaCurso.putString("primeiroNome", aluno.getPrimeiroNome());
                 listaCurso.putString("sobrenome", aluno.getSobrenome());
                 listaCurso.putString("curso", aluno.getCurso());
