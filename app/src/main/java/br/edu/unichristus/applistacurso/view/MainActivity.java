@@ -47,10 +47,21 @@ public class MainActivity extends AppCompatActivity {
 
         aluno = new Aluno();
 
+        //Buscar dados no SharedPreferences no arquivo criado, no caso "preferences"
+        aluno.setPrimeiroNome(preferences.getString("primeiroNome", ""));
+        aluno.setSobrenome(preferences.getString("sobrenome", ""));
+        aluno.setCurso(preferences.getString("curso", ""));
+        aluno.setTelefone(preferences.getString("telefone", ""));
+
         editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
         editSobrenome = findViewById(R.id.editSobrenome);
         editCurso = findViewById(R.id.editCurso);
         editTelefone = findViewById(R.id.editTelefone);
+
+        editPrimeiroNome.setText(aluno.getPrimeiroNome());
+        editSobrenome.setText(aluno.getSobrenome());
+        editCurso.setText(aluno.getCurso());
+        editTelefone.setText(aluno.getTelefone());
 
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
@@ -62,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         editTelefone.setText(aluno.getTelefone());
 
 
+
+        //Limpar dados
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,14 +85,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Fechar aplicativo
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Agradecemos pelo preenchimento da pesquisa!", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this, "Agradecemos o preenchimento da pesquisa!", Toast.LENGTH_LONG).show();
                 finish();
             }
         });
 
+        //Salvar dados
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
