@@ -1,14 +1,13 @@
-package br.edu.unichristus.applistacurso.view;
+package br.edu.unichristus.appconsultadisciplina.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Toast;
 
-import br.edu.unichristus.applistacurso.R;
-import br.edu.unichristus.applistacurso.database.ListaCursoDB;
+import br.edu.unichristus.appconsultadisciplina.R;
+import br.edu.unichristus.appconsultadisciplina.database.ListaAlunoDB;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                ListaCursoDB db = new ListaCursoDB(SplashActivity.this);
+                ListaAlunoDB db = new ListaAlunoDB(SplashActivity.this);
 
                 Intent telaPrincipal = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(telaPrincipal);

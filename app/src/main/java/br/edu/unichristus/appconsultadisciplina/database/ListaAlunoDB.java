@@ -1,4 +1,4 @@
-package br.edu.unichristus.applistacurso.database;
+package br.edu.unichristus.appconsultadisciplina.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,11 +9,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.unichristus.applistacurso.model.Aluno;
+import br.edu.unichristus.appconsultadisciplina.model.Aluno;
 
-public class ListaCursoDB extends SQLiteOpenHelper {
+public class ListaAlunoDB extends SQLiteOpenHelper {
 
-    private static final String DB_NAME = "listacurso.db";
+    private static final String DB_NAME = "listadisciplina.db";
     private static final int DB_VERSION = 1;
 
     Cursor cursor;
@@ -21,7 +21,7 @@ public class ListaCursoDB extends SQLiteOpenHelper {
     SQLiteDatabase db;
 
 
-    public ListaCursoDB(Context context) {
+    public ListaAlunoDB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
 
         db = getWritableDatabase();
@@ -32,9 +32,9 @@ public class ListaCursoDB extends SQLiteOpenHelper {
         //Query SQL para criar table
         String sqlTabelaIntencao =
                 "CREATE TABLE Intencao (id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                        "primeiroNome TEXT, " +
-                        "sobrenome TEXT, " +
-                        "curso TEXT, " +
+                        "nome TEXT, " +
+                        "matricula TEXT, " +
+                        "disciplina TEXT, " +
                         "telefone TEXT)";
         db.execSQL(sqlTabelaIntencao);
 
@@ -67,9 +67,9 @@ public class ListaCursoDB extends SQLiteOpenHelper {
                 registro = new Aluno();
 
                 registro.setId(cursor.getInt(0));
-                registro.setPrimeiroNome(cursor.getString(1));
-                registro.setSobrenome(cursor.getString(2));
-                registro.setCurso(cursor.getString(3));
+                registro.setNome(cursor.getString(1));
+                registro.setMatricula(cursor.getString(2));
+                registro.setDisciplina(cursor.getString(3));
                 registro.setTelefone(cursor.getString(4));
 
                 lista.add(registro);

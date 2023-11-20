@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "br.edu.unichristus.applistacurso"
+    namespace = "br.edu.unichristus.appconsultadisciplina"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "br.edu.unichristus.applistacurso"
+        applicationId = "br.edu.unichristus.appconsultadisciplina"
         minSdk = 21
         targetSdk = 34
         versionCode = 1

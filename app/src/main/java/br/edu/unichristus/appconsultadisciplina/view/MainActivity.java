@@ -1,10 +1,8 @@
-package br.edu.unichristus.applistacurso.view;
+package br.edu.unichristus.appconsultadisciplina.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,9 +10,9 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import br.edu.unichristus.applistacurso.R;
-import br.edu.unichristus.applistacurso.controller.AlunoController;
-import br.edu.unichristus.applistacurso.model.Aluno;
+import br.edu.unichristus.appconsultadisciplina.R;
+import br.edu.unichristus.appconsultadisciplina.controller.AlunoController;
+import br.edu.unichristus.appconsultadisciplina.model.Aluno;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     List<Aluno> dados;
 
 
-    EditText editPrimeiroNome;
-    EditText editSobrenome;
-    EditText editCurso;
+    EditText editNome;
+    EditText editDisciplina;
+    EditText editMatricula;
     EditText editTelefone;
 
     Button btnLimpar;
@@ -48,23 +46,23 @@ public class MainActivity extends AppCompatActivity {
 
         controller.buscar(aluno);
 
-        editPrimeiroNome = findViewById(R.id.editPrimeiroNome);
-        editSobrenome = findViewById(R.id.editSobrenome);
-        editCurso = findViewById(R.id.editCurso);
+        editNome = findViewById(R.id.editNome);
+        editMatricula = findViewById(R.id.editMatricula);
+        editDisciplina = findViewById(R.id.editDisciplina);
         editTelefone = findViewById(R.id.editTelefone);
 
-        editPrimeiroNome.setText(aluno.getPrimeiroNome());
-        editSobrenome.setText(aluno.getSobrenome());
-        editCurso.setText(aluno.getCurso());
+        editNome.setText(aluno.getNome());
+        editMatricula.setText(aluno.getMatricula());
+        editDisciplina.setText(aluno.getDisciplina());
         editTelefone.setText(aluno.getTelefone());
 
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
-        editPrimeiroNome.setText(aluno.getPrimeiroNome());
-        editSobrenome.setText(aluno.getSobrenome());
-        editCurso.setText(aluno.getCurso());
+        editNome.setText(aluno.getNome());
+        editMatricula.setText(aluno.getMatricula());
+        editDisciplina.setText(aluno.getDisciplina());
         editTelefone.setText(aluno.getTelefone());
 
 
@@ -72,9 +70,9 @@ public class MainActivity extends AppCompatActivity {
         btnLimpar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editPrimeiroNome.setText("");
-                editSobrenome.setText("");
-                editCurso.setText("");
+                editNome.setText("");
+                editMatricula.setText("");
+                editDisciplina.setText("");
                 editTelefone.setText("");
 
                 controller.limpar();
@@ -95,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                aluno.setPrimeiroNome(editPrimeiroNome.getText().toString());
-                aluno.setSobrenome(editSobrenome.getText().toString());
-                aluno.setCurso(editCurso.getText().toString());
+                aluno.setNome(editNome.getText().toString());
+                aluno.setMatricula(editMatricula.getText().toString());
+                aluno.setDisciplina(editDisciplina.getText().toString());
                 aluno.setTelefone(editTelefone.getText().toString());
 
                 Toast.makeText(MainActivity.this, "Salvo " + aluno.toString(), Toast.LENGTH_LONG).show();
