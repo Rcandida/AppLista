@@ -1,2 +1,2 @@
-# AppListaCurso
- Aplicativo de Lista de Curso
+# AppConsultaDisciplina
+ Aplicativo de Consulta de Intenção de Matrícula
