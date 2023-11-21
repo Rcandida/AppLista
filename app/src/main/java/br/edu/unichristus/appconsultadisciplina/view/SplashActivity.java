@@ -11,7 +11,7 @@ import br.edu.unichristus.appconsultadisciplina.database.ListaAlunoDB;
 
 public class SplashActivity extends AppCompatActivity {
 
-    public static final int TIME_OUT_SPLASH = 4000;
+    public static final int TIME_OUT_SPLASH = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
