@@ -38,13 +38,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         controller = new AlunoController(MainActivity.this);
+
         dados = controller.getListaDados();
+
+        controller.deletar(1);
 
         controller.toString();
 
         aluno = new Aluno();
-
-        controller.buscar(aluno);
 
         editNome = findViewById(R.id.editNome);
         editMatricula = findViewById(R.id.editMatricula);
