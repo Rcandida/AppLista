@@ -6,10 +6,12 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import br.edu.unichristus.appconsultadisciplina.model.Aluno;
+
 
 public class ListaAlunoDB extends SQLiteOpenHelper {
 
@@ -23,7 +25,6 @@ public class ListaAlunoDB extends SQLiteOpenHelper {
 
     public ListaAlunoDB(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-
         db = getWritableDatabase();
     }
 
@@ -37,18 +38,14 @@ public class ListaAlunoDB extends SQLiteOpenHelper {
                         "disciplina TEXT, " +
                         "telefone TEXT)";
         db.execSQL(sqlTabelaIntencao);
-
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public void salvarObjeto(String tabela, ContentValues dados){
-
         db.insert(tabela, null, dados);
-
     }
 
     public List<Aluno> listarDados(){
@@ -56,14 +53,16 @@ public class ListaAlunoDB extends SQLiteOpenHelper {
         List<Aluno> lista = new ArrayList<>();
 
         Aluno registro;
+
         String querySQL = "SELECT * FROM Intencao";
 
+        //o cursor é responsável por consultar o banco de dados e aplicar a query
+        //o rawQuery executa a instrução com os argumentos. Como queremos a lista toda, coloca argumentos como null
         cursor = db.rawQuery(querySQL, null);
 
         if(cursor.moveToFirst()){
 
             do{
-
                 registro = new Aluno();
 
                 registro.setId(cursor.getInt(0));
@@ -76,10 +75,12 @@ public class ListaAlunoDB extends SQLiteOpenHelper {
 
             }while(cursor.moveToNext());
         }else{
-
+            //false
         }
-
         return lista;
+    }
 
+    public void deletarObjeto(String tabela, int id){
+        db.delete(tabela,"id=?", new String[]{Integer.toString(id)});
     }
 }
